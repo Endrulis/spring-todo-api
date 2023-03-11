@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Add Task</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+	crossorigin="anonymous">
+	</head>
+	<body>
+		<div class="container">
+			<form
+				action="#"
+				th:action="@{/tasks/addTask}"
+				th:object="${task}"
+				method="post"
+			>
+				<div class="form-group">
+					<label for="name">Name:</label>
+			        <input type="text" class="form-control" th:field="*{name}" id="name" placeholder="Name" required/>
+			    </div>
+			<div class="form-group">
+				<label for="description">Description:</label>
+		        <input type="text" class="form-control" th:field="*{description}" id="description" placeholder="Description" />
+		    </div>
+		    
+			<div class="form-group">
+				<label for="dueDate">Due Date:</label>
+		        <input type="date" class="form-control" th:field="*{dueDate}" id="dueDate" required />
+		    </div>
+		    
+			<div class="form-group">
+				<label for="status">Status:</label>
+				<select id="status" name="status" class="form-control" th:field="*{status}" required>
+					<option value="">--Select Status--</option>
+					<option th:each="status : ${T(com.endrulis.todoapi.model.TaskStatus).values()}"
+						th:value="${status}"
+						th:text="${status.getDisplayName()}" ></option>
+				</select>
+			</div>
+			<input type="submit" class="btn btn-primary" value="Add Task" />
+			<a class="btn btn-secondary" th:href="@{/tasks}">Back</a>
+		</form>
+	</div>
+<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+		crossorigin="anonymous"></script>
+</body>
+</html>
